@@ -41,10 +41,6 @@ const modules = [
     route: EnquiryRoutes,
   },
   {
-    path: "/enquiry",
-    route: EnquiryRoutes,
-  },
-  {
     path: "/news",
     route: newsRoutes,
   },
