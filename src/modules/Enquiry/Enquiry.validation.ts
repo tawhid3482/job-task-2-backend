@@ -50,10 +50,5 @@ export const enquirySchema = z.object({
     .string()
     .email("Email must be a valid email address"),
 
-  Image: z
-    .string()
-    .url("Image must be a valid URL"),
-
   status: StatusEnum.default("CONFIRMED"),
-  createdAt: z.date().optional(),
 });

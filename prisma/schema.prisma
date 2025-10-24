@@ -94,7 +94,6 @@ model Enquiry {
   attractiveFeature String
   message           String
   email             String   @unique
-  Image             String
   status            Status   @default(CONFIRMED)
   createdAt         DateTime @default(now())
 }

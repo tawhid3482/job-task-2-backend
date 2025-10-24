@@ -17,7 +17,7 @@ const createUser = async (data: {
 
   const hashedPassword = await bcrypt.hash(
     data.password,
-    Number(envVars.BCRYPT_SALT_ROUND)
+    Number(envVars.BCRYPT_SALT_ROUNDS)
   );
 
   const user = await prisma.user.create({
@@ -25,7 +25,6 @@ const createUser = async (data: {
       name: data.name,
       email: data.email,
       password: hashedPassword,
-      role: "TRAINEE",
     },
   });
   // hide password

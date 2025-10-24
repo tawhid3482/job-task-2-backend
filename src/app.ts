@@ -8,7 +8,10 @@ import notFound from "./middlewares/notFound";
 
 const app: Application = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:["http://localhost:3000","https://job-task-2-sooty.vercel.app"],
+  credentials:true
+}));
 app.use(cookieParser());
 
 app.use("/api/v1", router);
