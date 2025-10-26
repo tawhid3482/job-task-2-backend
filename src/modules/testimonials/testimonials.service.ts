@@ -9,7 +9,7 @@ const createtestimonials = async (data: any) => {
       ...data,
     },
   });
-  // hide password
+ 
   return result;
 };
 
