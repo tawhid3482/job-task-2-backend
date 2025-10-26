@@ -59,6 +59,16 @@ model blogs {
   status    Status   @default(CONFIRMED)
   createdAt DateTime @default(now())
 }
+
+model Slider {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title   String
+  text     String
+  Image     String
+  status    Status   @default(CONFIRMED)
+  createdAt DateTime @default(now())
+}
+
 model News {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   content   String
