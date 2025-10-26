@@ -19,7 +19,11 @@ Password Hashing: bcryptjs
 
 📌 API Endpoints 🔹 
 
+https://job-task-2-backend.vercel.app/api/v1/users
+
 https://job-task-2-backend.vercel.app/api/v1/perfections
+
+https://job-task-2-backend.vercel.app/api/v1/slider
 
 https://job-task-2-backend.vercel.app/api/v1/testimonial
 

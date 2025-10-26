@@ -15,6 +15,18 @@ const createPerfection = async (data: any) => {
   return result;
 };
 
+const updatePerfection = async (id: string, data: any) => {
+  const result = await prisma.perfections.update({
+    where: {
+      id,
+    },
+    data: {
+      ...data,
+    },
+  });
+  return result;
+};
+
 const getAllPerfection = async () => {
   const user = await prisma.perfections.findMany();
 
@@ -24,4 +36,5 @@ const getAllPerfection = async () => {
 export const perfectionServices = {
   createPerfection,
   getAllPerfection,
+  updatePerfection,
 };

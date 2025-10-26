@@ -9,6 +9,10 @@ router.post(
   validateRequest(perfectionSchema),
   perfectionsController.createPerfections
 );
+router.patch(
+  "/:id",
+  perfectionsController.updatePerfections
+);
 
 router.get("/", perfectionsController.getAllPerfection);
 

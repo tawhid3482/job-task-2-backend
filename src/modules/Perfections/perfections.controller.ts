@@ -17,6 +17,21 @@ export const createPerfections = catchAsync(
   }
 );
 
+export const updatePerfections = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id as string;
+    const data = req.body;
+    const result = await perfectionServices.updatePerfection(id, data);
+
+    sendResponse(res, {
+      statusCode: httpStatus.CREATED,
+      success: true,
+      message: "perfections created successfully",
+      data: result,
+    });
+  }
+);
+
 const getAllPerfection = catchAsync(async (req: Request, res: Response) => {
   const result = await perfectionServices.getAllPerfection();
 
@@ -31,4 +46,5 @@ const getAllPerfection = catchAsync(async (req: Request, res: Response) => {
 export const perfectionsController = {
   createPerfections,
   getAllPerfection,
+  updatePerfections,
 };

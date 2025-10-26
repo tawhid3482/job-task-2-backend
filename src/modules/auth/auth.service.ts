@@ -20,7 +20,7 @@ const loginUser = async (data: { email: string; password: string }) => {
   );
   const { password, ...safeUser } = user;
 
-  return { safeUser, token };
+  return { token };
 };
 
 export const AuthService = {
