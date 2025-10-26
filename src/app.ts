@@ -10,6 +10,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors({
   origin:["http://localhost:3000","https://job-task-2-sooty.vercel.app"],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials:true
 }));
 app.use(cookieParser());

@@ -7,12 +7,13 @@ import uploadToDigitalOcean from "../../helpers/uploadToDigitalOcean";
 
 export const createslider = catchAsync(async (req: Request, res: Response) => {
   const data = req.body;
-  const file = req.file;
-  if (!file) {
-    throw new Error("image file is missing");
-  }
-  const fileUrl = await uploadToDigitalOcean(file);
-  req.body.Image = fileUrl;
+  // console.log(data)
+  // const file = req.file;
+  // if (!file) {
+  //   throw new Error("image file is missing");
+  // }
+  // const fileUrl = await uploadToDigitalOcean(file);
+  // req.body.Image = fileUrl;
   const result = await sliderServices.createslider(data);
 
   sendResponse(res, {

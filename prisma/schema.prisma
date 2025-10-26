@@ -62,8 +62,8 @@ model blogs {
 
 model Slider {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title   String
-  text     String
+  title     String
+  text      String
   Image     String
   status    Status   @default(CONFIRMED)
   createdAt DateTime @default(now())
@@ -85,10 +85,11 @@ model Photo {
   status    Status   @default(CONFIRMED)
   createdAt DateTime @default(now())
 }
+
 model Video {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
-  url     String
+  url       String
   status    Status   @default(CONFIRMED)
   createdAt DateTime @default(now())
 }

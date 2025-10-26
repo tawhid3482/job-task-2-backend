@@ -8,7 +8,7 @@ export const perfectionSchema = z.object({
   Type: z.string().min(2, "Type is required"),
   Image: z.string().url("Image must be a valid URL"),
   Orientation: z.string().min(1, "Orientation is required"),
-  Address: z.string().min(5, "Address must be at least 5 characters"),
+  Address: z.string(),
   FrontRoad: z.string().min(1, "Front road information is required"),
   LandSize: z
     .string()

@@ -8,8 +8,6 @@ const router = Router();
 
 router.post(
   "/create",
-  fileUploader.doc,
-  parseBodyData,
   validateRequest(sliderSchema),
   sliderController.createslider
 );
