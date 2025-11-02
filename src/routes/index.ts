@@ -9,6 +9,7 @@ import { EnquiryRoutes } from "../modules/Enquiry/Enquiry.route";
 import { newsRoutes } from "../modules/News/news.route";
 import { concernRoutes } from "../modules/Cocerns/concerns.route";
 import { sliderRoutes } from "../modules/slider/slider.route";
+import { contactRoutes } from "../modules/contact/contact.route";
 
 export const router = Router();
 
@@ -52,6 +53,10 @@ const modules = [
   {
     path: "/slider",
     route: sliderRoutes,
+  },
+  {
+    path: "/contact",
+    route: contactRoutes,
   },
 ];
 

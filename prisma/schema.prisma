@@ -51,6 +51,23 @@ model concerns {
   createdAt DateTime @default(now())
 }
 
+model contact {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String   @unique
+  phone          String
+  whatsappNumber String
+  fbLink         String
+  instagramLink  String
+  linkedInLink   String
+  youtubeLink    String
+  address        String
+  workTime       String
+  workSchedule   String
+  logo           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
 model blogs {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   content   String
@@ -117,4 +134,5 @@ enum Role {
 enum Status {
   CONFIRMED
   CANCELLED
+  PENDING
 }
