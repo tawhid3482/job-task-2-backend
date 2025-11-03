@@ -2,7 +2,6 @@ import { z } from "zod";
 export const perfectionSchema = z.object({
   Title: z.string(),
   Type: z.string(),
-  Image: z.string(),
   Orientation: z.string(),
   Address: z.string(),
   FrontRoad: z.string(),

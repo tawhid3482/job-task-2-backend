@@ -16,6 +16,17 @@ model User {
   createdAt DateTime @default(now())
 }
 
+model Schedule {
+  id        String          @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String         
+  date      String
+  phone     String
+  message   String
+  status    ScheduleStatus  @default(PENDING)
+  createdAt DateTime        @default(now())
+}
+
 model Perfections {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   Title           String
@@ -135,4 +146,10 @@ enum Status {
   CONFIRMED
   CANCELLED
   PENDING
+}
+
+enum ScheduleStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

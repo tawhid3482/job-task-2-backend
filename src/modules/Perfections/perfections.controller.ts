@@ -3,15 +3,31 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status-codes";
 import { perfectionServices } from "./perfections.service";
+import uploadToDigitalOcean from "../../helpers/uploadToDigitalOcean";
 
 export const createPerfections = catchAsync(
   async (req: Request, res: Response) => {
+    const file = req.file;
+    console.log("Uploaded file:", file); // Multer file object
+    console.log("Req body:", req.body);
+
+    if (!file) {
+      throw new Error("Image file is missing");
+    }
+
+    // Upload to DigitalOcean
+    const uploadedFileUrl = await uploadToDigitalOcean(file);
+
+    // Add uploaded URL to body
+    req.body.doc = uploadedFileUrl;
+
+    // Save to database
     const result = await perfectionServices.createPerfection(req.body);
 
     sendResponse(res, {
       statusCode: httpStatus.CREATED,
       success: true,
-      message: "perfections created successfully",
+      message: "Perfection created successfully",
       data: result,
     });
   }
