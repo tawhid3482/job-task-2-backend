@@ -8,7 +8,7 @@ import uploadToDigitalOcean from "../../helpers/uploadToDigitalOcean";
 export const createPerfections = catchAsync(
   async (req: Request, res: Response) => {
     const file = req.file;
-    console.log("Uploaded file:", file); // Multer file object
+    console.log("Uploaded file:", file);
     console.log("Req body:", req.body);
 
     if (!file) {
