@@ -15,7 +15,7 @@ const createPerfection = async (data: any) => {
       NumberOfUnits: data.NumberOfUnits,
       NumberOfParking: data.NumberOfParking,
       NumberOfFloors: data.NumberOfFloors,
-      Image: data.doc, 
+      Image:data.Image , 
     },
   });
   return result;

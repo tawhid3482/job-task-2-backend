@@ -5,6 +5,8 @@ import { sliderSchema } from "./slider.validation";
 
 const router = Router();
 
+
+
 router.post(
   "/create",
   validateRequest(sliderSchema),
