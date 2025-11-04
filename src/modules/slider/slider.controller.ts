@@ -3,10 +3,8 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status-codes";
 import { sliderServices } from "./slider.service";
-import uploadToDigitalOcean from "../../helpers/uploadToDigitalOcean";
 
-export const createSlider = catchAsync(async (req: Request, res: Response) => {
-  console.log(req.body)
+ const createSlider = catchAsync(async (req: Request, res: Response) => {
   const result = await sliderServices.createslider(req.body);
 
   sendResponse(res, {

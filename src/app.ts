@@ -1,31 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Application, NextFunction, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import cors from "cors";
-import express from "express";
-
 import cookieParser from "cookie-parser";
-import { envVars } from "./config/env";
-import { router } from "./routes";
+import { router as apiRouter } from "./routes"; // তুমি routes/index.ts এ সব রাউট যুক্ত করো
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
+import { imageUpload } from "./routes/indexs";
 
 const app: Application = express();
 
+// Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin:"*",
-  credentials:true
+  origin: "*",
+  credentials: true,
 }));
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.use("/api/v1", router);
+// API Routes
+app.use("/api/v1", apiRouter);
+app.use("/api/v1", imageUpload);
 
+// Root Route
 app.get("/", (req: Request, res: Response) => {
-  res.send("Bank start!");
+  res.send("Server is running!");
 });
 
+// Error Handling Middleware
 app.use(globalErrorHandler);
-
 app.use(notFound);
 
 export default app;
