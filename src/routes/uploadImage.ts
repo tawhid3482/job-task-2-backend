@@ -3,16 +3,22 @@ import multer from "multer";
 import path from "path";
 import dotenv from "dotenv";
 import * as ftp from "basic-ftp";
-import fs from "fs";
 import { envVars } from "../config/env";
+import { Readable } from "stream";
 
 dotenv.config();
 
 const router = Router();
-const upload = multer({ dest: "tmp/" });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-router.post("/", upload.single("image"), async (req: Request, res: Response) => {
-  if (!req.file) return res.status(400).json({ message: "No file uploaded" });
+router.post("/", upload.any(), async (req: Request, res: Response) => {
+  const files = req.files as Express.Multer.File[];
+
+  // যদি কোনো ফাইল না থাকে
+  if (!files || files.length === 0) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
 
   const client = new ftp.Client();
   client.ftp.verbose = false;
@@ -25,26 +31,29 @@ router.post("/", upload.single("image"), async (req: Request, res: Response) => 
       secure: false,
     });
 
-    const localFile = req.file.path;
-    const remoteFileName = `${Date.now()}_${req.file.originalname}`;
-    const remotePath = path.posix.join(
-      process.env.CPANEL_UPLOAD_PATH!,
-      remoteFileName
-    );
+    const uploadedUrls: string[] = [];
 
-    await client.uploadFrom(localFile, remotePath);
+    for (const file of files) {
+      const remoteFileName = `${Date.now()}_${file.originalname}`;
+      const remotePath = path.posix.join(process.env.CPANEL_UPLOAD_PATH!, remoteFileName);
 
-    const imageUrl = `https://${process.env.CPANEL_DOMAIN}/images/${remoteFileName}`;
+      const stream = Readable.from(file.buffer);
+      await client.uploadFrom(stream, remotePath);
 
-    // ✅ লোকাল tmp ফাইল delete করা
-    try {
-      await fs.promises.unlink(localFile);
-    } catch (err) {
-      console.warn("Failed to delete temp file:", err);
+      const imageUrl = `https://${process.env.CPANEL_DOMAIN}/images/${remoteFileName}`;
+      uploadedUrls.push(imageUrl);
     }
 
-    res.json({ success: true, url: imageUrl });
+    // ইউজার যদি একটা ছবি দেয় → single URL রিটার্ন করবে
+    // একাধিক ছবি দিলে → array রিটার্ন করবে
+    const responseData =
+      uploadedUrls.length === 1
+        ? { success: true, url: uploadedUrls[0] }
+        : { success: true, urls: uploadedUrls };
+
+    res.json(responseData);
   } catch (err) {
+    console.error("Upload error:", err);
     res.status(500).json({ success: false, message: "Upload failed" });
   } finally {
     client.close();

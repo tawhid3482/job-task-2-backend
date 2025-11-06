@@ -1,13 +1,12 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status-codes";
 import { perfectionServices } from "./perfections.service";
 
-export const createPerfections = catchAsync(
+ const createPerfections = catchAsync(
   async (req: Request, res: Response) => {
     const result = await perfectionServices.createPerfection(req.body);
-
     sendResponse(res, {
       statusCode: httpStatus.CREATED,
       success: true,
@@ -17,7 +16,7 @@ export const createPerfections = catchAsync(
   }
 );
 
-export const updatePerfections = catchAsync(
+ const updatePerfections = catchAsync(
   async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const data = req.body;
@@ -31,6 +30,17 @@ export const updatePerfections = catchAsync(
     });
   }
 );
+const deletePerfections = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  const result = await perfectionServices.deletePerfection(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: "perfections deleted successfully",
+    data: result,
+  });
+});
 
 const getAllPerfection = catchAsync(async (req: Request, res: Response) => {
   const result = await perfectionServices.getAllPerfection();
@@ -47,4 +57,5 @@ export const perfectionsController = {
   createPerfections,
   getAllPerfection,
   updatePerfections,
+  deletePerfections,
 };

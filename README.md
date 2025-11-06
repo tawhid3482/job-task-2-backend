@@ -66,3 +66,8 @@ Start Server
 npm run dev
 
 🚀 Live Hosting Link : https://job-task-2-backend.vercel.app
+
+github a jodi .env problem jodi hye ba kono commit ar jnno problem hy tahole reverse  kore push korte hbe
+
+reverse ar jnnno
+git reset --soft HEAD~1

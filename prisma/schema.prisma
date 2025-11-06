@@ -17,31 +17,31 @@ model User {
 }
 
 model Schedule {
-  id        String          @id @default(auto()) @map("_id") @db.ObjectId
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  email     String         
+  email     String
   date      String
   phone     String
   message   String
-  status    ScheduleStatus  @default(PENDING)
-  createdAt DateTime        @default(now())
+  status    ScheduleStatus @default(PENDING)
+  createdAt DateTime       @default(now())
 }
 
 model Perfections {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  Title           String
-  Type            String
-  Image           String
-  Orientation     String
-  Address         String
-  FrontRoad       String
-  LandSize        String
-  ApartmentSize   String
-  NumberOfUnits   String
-  NumberOfParking String
-  NumberOfFloors  String
-  status          Status   @default(CONFIRMED)
-  createdAt       DateTime @default(now())
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  Title             String
+  description       String
+  description2      String
+  description3      String
+  FeaturesAmenities Json?
+  videoUrl          String
+  galleryImages     String[]
+  Category          String
+  Type              String
+  Location          String
+  extraFields       Json?
+  status            Status   @default(CONFIRMED)
+  createdAt         DateTime @default(now())
 }
 
 model testimonials {

@@ -5,23 +5,11 @@ const prisma = new PrismaClient();
 const createPerfection = async (data: any) => {
   const result = await prisma.perfections.create({
     data: {
-      Title: data.Title,
-      Type: data.Type,
-      Orientation: data.Orientation,
-      Address: data.Address,
-      FrontRoad: data.FrontRoad,
-      LandSize: data.LandSize,
-      ApartmentSize: data.ApartmentSize,
-      NumberOfUnits: data.NumberOfUnits,
-      NumberOfParking: data.NumberOfParking,
-      NumberOfFloors: data.NumberOfFloors,
-      Image:data.Image , 
+      ...data,
     },
   });
   return result;
 };
-
-
 
 const updatePerfection = async (id: string, data: any) => {
   const result = await prisma.perfections.update({
@@ -30,6 +18,15 @@ const updatePerfection = async (id: string, data: any) => {
     },
     data: {
       ...data,
+    },
+  });
+  return result;
+};
+
+const deletePerfection = async (id: string) => {
+  const result = await prisma.perfections.delete({
+    where: {
+      id
     },
   });
   return result;
@@ -45,4 +42,5 @@ export const perfectionServices = {
   createPerfection,
   getAllPerfection,
   updatePerfection,
+  deletePerfection
 };
