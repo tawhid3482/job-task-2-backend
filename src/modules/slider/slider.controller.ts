@@ -26,7 +26,21 @@ const getAllSlider = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteSlider = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  const result = await sliderServices.deleteSlider(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: "perfections deleted successfully",
+    data: result,
+  });
+});
+
+
 export const sliderController = {
   createSlider,
   getAllSlider,
+  deleteSlider
 };

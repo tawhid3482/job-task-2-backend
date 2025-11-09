@@ -15,4 +15,8 @@ router.post(
 
 router.get("/", sliderController.getAllSlider);
 
+router.delete(
+  "/delete/:id",
+  sliderController.deleteSlider
+);
 export const sliderRoutes = router;

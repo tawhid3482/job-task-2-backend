@@ -27,8 +27,20 @@ const getAllTestimonial = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const deleteTestimonial = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  const result = await testimonialsServices.deleteTestimonial(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: "perfections deleted successfully",
+    data: result,
+  });
+});
 
 export const testimonialsController = {
   createTestimonials,
   getAllTestimonial,
+  deleteTestimonial
 };

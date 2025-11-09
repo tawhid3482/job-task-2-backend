@@ -18,8 +18,18 @@ const getAlltestimonials = async () => {
 
   return user;
 };
+const deleteTestimonial = async (id: string) => {
+  const result = await prisma.testimonials.delete({
+    where: {
+      id
+    },
+  });
+  return result;
+};
+
 
 export const testimonialsServices = {
   createtestimonials,
   getAlltestimonials,
+  deleteTestimonial
 };

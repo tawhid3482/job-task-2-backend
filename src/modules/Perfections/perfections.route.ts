@@ -10,12 +10,12 @@ router.post(
 
 router.get("/", perfectionsController.getAllPerfection);
 
-router.patch(
-  "/:id",
-  perfectionsController.updatePerfections
-);
+// router.patch(
+//   "/update/:id",
+//   perfectionsController.updatePerfections
+// );
 router.delete(
-  "/:id",
+  "/delete/:id",
   perfectionsController.deletePerfections
 );
 

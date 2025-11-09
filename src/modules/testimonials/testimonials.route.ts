@@ -12,4 +12,8 @@ router.post(
 
 router.get("/", testimonialsController.getAllTestimonial);
 
+router.delete(
+  "/delete/:id",
+  testimonialsController.deleteTestimonial
+);
 export const testimonialsRoutes = router;

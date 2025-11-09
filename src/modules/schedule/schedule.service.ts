@@ -21,11 +21,23 @@ const createSchedule = async (data: any) => {
 };
 
 const getSchedules = async () => {
-  const user = await prisma.news.findMany();
+  const user = await prisma.schedule.findMany();
   return user;
 };
+
+
+const deleteSchedule = async (id: string) => {
+  const result = await prisma.schedule.delete({
+    where: {
+      id
+    },
+  });
+  return result;
+};
+
 
 export const ScheduleServices = {
   createSchedule,
   getSchedules,
+  deleteSchedule
 };
