@@ -19,7 +19,18 @@ const getAllblogs = async () => {
   return user;
 };
 
+const deleteBlogs = async (id: string) => {
+  const result = await prisma.blogs.delete({
+    where: {
+      id
+    },
+  });
+  return result;
+};
+
+
 export const blogsServices = {
   createblogs,
   getAllblogs,
+  deleteBlogs
 };

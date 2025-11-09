@@ -13,4 +13,9 @@ router.post(
 
 router.get("/", blogsController.getAllblogss);
 
+router.delete(
+  "/delete/:id",
+  blogsController.deleteBlogs
+);
+
 export const blogsRoutes = router;
