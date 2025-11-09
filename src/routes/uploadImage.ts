@@ -15,7 +15,6 @@ const upload = multer({ storage });
 router.post("/", upload.any(), async (req: Request, res: Response) => {
   const files = req.files as Express.Multer.File[];
 
-  // যদি কোনো ফাইল না থাকে
   if (!files || files.length === 0) {
     return res.status(400).json({ message: "No file uploaded" });
   }
@@ -44,8 +43,7 @@ router.post("/", upload.any(), async (req: Request, res: Response) => {
       uploadedUrls.push(imageUrl);
     }
 
-    // ইউজার যদি একটা ছবি দেয় → single URL রিটার্ন করবে
-    // একাধিক ছবি দিলে → array রিটার্ন করবে
+  
     const responseData =
       uploadedUrls.length === 1
         ? { success: true, url: uploadedUrls[0] }
