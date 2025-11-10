@@ -4,7 +4,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const createslider = async (data: any) => {
-  console.log(data)
   const result = await prisma.slider.create({
     data: {
       ...data,

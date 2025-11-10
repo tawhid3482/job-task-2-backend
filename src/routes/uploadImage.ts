@@ -51,7 +51,6 @@ router.post("/", upload.any(), async (req: Request, res: Response) => {
 
     res.json(responseData);
   } catch (err) {
-    console.error("Upload error:", err);
     res.status(500).json({ success: false, message: "Upload failed" });
   } finally {
     client.close();
