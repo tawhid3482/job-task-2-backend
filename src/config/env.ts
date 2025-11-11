@@ -19,7 +19,6 @@ interface EnvVars {
   CPANEL_PASS: string;
   CPANEL_UPLOAD_PATH: string;
 }
-
 const loadEnvVariables = (): EnvVars => {
   const requiredVars = [
     "PORT",
