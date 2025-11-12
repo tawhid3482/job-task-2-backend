@@ -6,6 +6,7 @@ import { router as apiRouter } from "./routes"; // তুমি routes/index.ts 
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
 import { imageUpload } from "./routes/indexs";
+import path from "path";
 
 const app: Application = express();
 
@@ -17,6 +18,14 @@ app.use(cors({
   credentials: true,
 }));
 app.use(cookieParser());
+
+
+
+// Serve static images from /public/images
+app.use("/images", express.static(path.join(__dirname, "../public/images")));
+
+// Use your upload router
+
 
 // API Routes
 app.use("/api/v1", apiRouter);
