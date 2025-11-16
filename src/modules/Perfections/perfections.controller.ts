@@ -25,7 +25,7 @@ import { perfectionServices } from "./perfections.service";
     sendResponse(res, {
       statusCode: httpStatus.CREATED,
       success: true,
-      message: "perfections created successfully",
+      message: "perfections updated successfully",
       data: result,
     });
   }
