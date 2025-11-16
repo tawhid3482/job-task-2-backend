@@ -33,7 +33,11 @@ const deletePerfection = async (id: string) => {
 };
 
 const getAllPerfection = async () => {
-  const user = await prisma.perfections.findMany();
+  const user = await prisma.perfections.findMany({
+    orderBy:{
+      createdAt:"desc"
+    }
+  });
 
   return user;
 };

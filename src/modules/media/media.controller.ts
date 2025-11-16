@@ -4,9 +4,9 @@ import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status-codes";
 import { mediaServices } from "./media.service";
 
-export const createmediaPhoto = catchAsync(
+export const createMedia = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await  mediaServices.createmediaPhoto(req.body);
+    const result = await  mediaServices.createMedia(req.body);
 
     sendResponse(res, {
       statusCode: httpStatus.CREATED,
@@ -17,8 +17,8 @@ export const createmediaPhoto = catchAsync(
   }
 );
 
-const getAllmediaPhoto = catchAsync(async (req: Request, res: Response) => {
-  const result = await  mediaServices.getAllmediaPhoto();
+const getAllMedia = catchAsync(async (req: Request, res: Response) => {
+  const result = await  mediaServices.getAllMedia();
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -27,33 +27,21 @@ const getAllmediaPhoto = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-export const createmediaVideo = catchAsync(
-  async (req: Request, res: Response) => {
-    const result = await  mediaServices.createmediaVideo(req.body);
-
-    sendResponse(res, {
-      statusCode: httpStatus.CREATED,
-      success: true,
-      message: " media created successfully",
-      data: result,
-    });
-  }
-);
-
-const getAllmediaVideo = catchAsync(async (req: Request, res: Response) => {
-  const result = await  mediaServices.getAllmediaVideo();
+const deleteMedia = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  const result = await mediaServices.deleteMedia(id);
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: httpStatus.CREATED,
     success: true,
-    message: " media got successfully",
+    message: "media deleted successfully",
     data: result,
   });
 });
+
 
 export const  mediaController = {
- createmediaPhoto,
- createmediaVideo,
- getAllmediaPhoto,
- getAllmediaVideo
+createMedia,
+getAllMedia,
+deleteMedia
 };

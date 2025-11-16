@@ -106,18 +106,10 @@ model News {
   createdAt DateTime @default(now())
 }
 
-model Photo {
+model Media {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  Image     String
-  status    Status   @default(CONFIRMED)
-  createdAt DateTime @default(now())
-}
-
-model Video {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  url       String
+  image     String[]
+  videoUrl     String?
   status    Status   @default(CONFIRMED)
   createdAt DateTime @default(now())
 }

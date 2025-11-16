@@ -8,6 +8,7 @@ import { EnquiryRoutes } from "../modules/Enquiry/Enquiry.route";
 import { newsRoutes } from "../modules/News/news.route";
 import { sliderRoutes } from "../modules/slider/slider.route";
 import { ScheduleRoutes } from "../modules/schedule/schedule.route";
+import { mediaRoutes } from "../modules/media/media.route";
 
 export const router = Router();
 
@@ -47,6 +48,10 @@ const modules = [
   {
     path: "/schedule",
     route: ScheduleRoutes,
+  },
+  {
+    path: "/gallery",
+    route: mediaRoutes,
   },
 ];
 

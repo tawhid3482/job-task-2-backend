@@ -1,24 +1,18 @@
 import { Router } from "express";
-import { validateRequest } from "../../middlewares/validateRequest";
-import { photoSchema } from "./media.validation";
 import { mediaController } from "./media.controller";
 
 const router = Router();
 
 router.post(
-  "/create/photo",
-  validateRequest(photoSchema),
-  mediaController.createmediaPhoto
+  "/create",
+  mediaController.createMedia
 );
 
-router.get("/photo", mediaController.getAllmediaPhoto);
+router.get("/", mediaController.getAllMedia);
 
-router.post(
-  "/create/video",
-  validateRequest(photoSchema),
-  mediaController.createmediaVideo
+router.delete(
+  "/delete/:id",
+  mediaController.deleteMedia
 );
-
-router.get("/video", mediaController.getAllmediaVideo);
 
 export const mediaRoutes = router;
