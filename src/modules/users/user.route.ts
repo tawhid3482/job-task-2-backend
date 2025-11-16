@@ -2,7 +2,6 @@ import { Router } from "express";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { registerUserSchema } from "./user.validation";
 import { UserController } from "./user.controller";
-import { auth } from "../../middlewares/authMiddleware";
 const router = Router();
 
 router.post(
@@ -11,6 +10,8 @@ router.post(
   UserController.createUser
 );
 
-router.get("/me", auth("ADMIN","USER"), UserController.getMe);
+router.get("/", UserController.getAllAdmin);
+
+// router.delete("/delete/:id",  UserController.deleteAdmin);
 
 export const UserRoutes = router;

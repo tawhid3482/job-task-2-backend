@@ -25,6 +25,7 @@ const createUser = async (data: {
       name: data.name,
       email: data.email,
       password: hashedPassword,
+      role:"ADMIN"
     },
   });
   // hide password
@@ -32,20 +33,24 @@ const createUser = async (data: {
   return safeUser;
 };
 
-const getMe = async (userId: string) => {
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
+const getAllAdmin = async () => {
+  const user = await prisma.user.findMany({
+    select: {
+      email: true,
+      id: true,
+      name: true,
+      role: true,
+      createdAt:true
+    },
   });
 
   if (!user) {
     throw new AppError(404, "User not found");
   }
-  // hide password
-  const { password, ...safeUser } = user;
-  return safeUser;
+  return user;
 };
 
 export const userServices = {
   createUser,
-  getMe,
+  getAllAdmin,
 };
