@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// --- Common Enum (same as Prisma Status enum) ---
 export const StatusEnum = z.enum(["PENDING", "CONFIRMED", "REJECTED"]);
 
 export const enquirySchema = z.object({

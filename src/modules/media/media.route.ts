@@ -14,5 +14,9 @@ router.delete(
   "/delete/:id",
   mediaController.deleteMedia
 );
+router.patch(
+  "/update/:id",
+  mediaController.updateMedia
+);
 
 export const mediaRoutes = router;

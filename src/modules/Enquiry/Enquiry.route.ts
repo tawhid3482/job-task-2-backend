@@ -12,6 +12,7 @@ router.post(
 );
 
 router.get("/", EnquiryController.getAllEnquirys);
-// router.get("/:id", EnquiryController.deleteEnquiry);
+
+router.delete("/:id", EnquiryController.deleteEnquiry);
 
 export const EnquiryRoutes = router;

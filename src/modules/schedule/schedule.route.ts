@@ -18,4 +18,5 @@ router.delete(
   "/delete/:id",
   ScheduleController.deleteSchedule
 );
+
 export const ScheduleRoutes = router;

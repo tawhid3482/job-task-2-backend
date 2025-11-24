@@ -28,7 +28,20 @@ const getAllEnquirys = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteEnquiry = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string
+  const result = await  EnquiryServices.deleteEnquiry(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: " Enquiry deleted successfully",
+    data: result,
+  }); 
+});
+
 export const  EnquiryController = {
   createEnquiry,
   getAllEnquirys,
+  deleteEnquiry
 };

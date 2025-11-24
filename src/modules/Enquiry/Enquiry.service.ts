@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-
 const prisma = new PrismaClient();
 
 const createEnquiry = async (data: any) => {
@@ -18,7 +17,18 @@ const getAllEnquiry = async () => {
   return user;
 };
 
+const deleteEnquiry = async (id: string) => {
+  const user = await prisma.enquiry.delete({
+    where: {
+      id,
+    },
+  });
+
+  return user;
+};
+
 export const EnquiryServices = {
   createEnquiry,
   getAllEnquiry,
+  deleteEnquiry,
 };

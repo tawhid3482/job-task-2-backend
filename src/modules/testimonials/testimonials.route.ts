@@ -16,4 +16,10 @@ router.delete(
   "/delete/:id",
   testimonialsController.deleteTestimonial
 );
+
+router.patch(
+  "/update/:id",
+  testimonialsController.updateTestimonial
+);
+
 export const testimonialsRoutes = router;

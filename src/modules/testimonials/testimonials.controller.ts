@@ -27,6 +27,7 @@ const getAllTestimonial = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const deleteTestimonial = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id as string;
   const result = await testimonialsServices.deleteTestimonial(id);
@@ -34,7 +35,19 @@ const deleteTestimonial = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,
-    message: "perfections deleted successfully",
+    message: "testimonials deleted successfully",
+    data: result,
+  });
+});
+
+const updateTestimonial = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  const result = await testimonialsServices.updateTestimonial(id, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: "testimonials updated successfully",
     data: result,
   });
 });
@@ -42,5 +55,6 @@ const deleteTestimonial = catchAsync(async (req: Request, res: Response) => {
 export const testimonialsController = {
   createTestimonials,
   getAllTestimonial,
-  deleteTestimonial
+  deleteTestimonial,
+  updateTestimonial
 };

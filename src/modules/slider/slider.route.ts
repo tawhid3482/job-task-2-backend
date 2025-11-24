@@ -19,4 +19,9 @@ router.delete(
   "/delete/:id",
   sliderController.deleteSlider
 );
+
+router.patch(
+  "/update/:id",
+  sliderController.updateSlider
+);
 export const sliderRoutes = router;

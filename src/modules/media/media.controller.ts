@@ -27,6 +27,7 @@ const getAllMedia = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const deleteMedia = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id as string;
   const result = await mediaServices.deleteMedia(id);
@@ -39,9 +40,23 @@ const deleteMedia = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateMedia = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  const result = await mediaServices.updateMedia(id, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: "media updated successfully",
+    data: result,
+  });
+});
+
+
 
 export const  mediaController = {
 createMedia,
 getAllMedia,
-deleteMedia
+deleteMedia,
+updateMedia
 };

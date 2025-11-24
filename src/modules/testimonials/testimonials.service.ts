@@ -18,6 +18,7 @@ const getAlltestimonials = async () => {
 
   return user;
 };
+
 const deleteTestimonial = async (id: string) => {
   const result = await prisma.testimonials.delete({
     where: {
@@ -27,9 +28,20 @@ const deleteTestimonial = async (id: string) => {
   return result;
 };
 
+const updateTestimonial = async (id: string, data: any) => {
+  const result = await prisma.testimonials.update({
+    where: {
+      id,
+    },
+    data: data,
+  });
+  return result;
+};
+
 
 export const testimonialsServices = {
   createtestimonials,
   getAlltestimonials,
-  deleteTestimonial
+  deleteTestimonial,
+  updateTestimonial
 };
