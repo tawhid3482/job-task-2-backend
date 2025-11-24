@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import sendEmail from "../../utils/sendMailByNodeMailer";
 import { scheduleEmailTemplate } from "../../utils/sendEmailTemplete";
+import sendEmail from "../../utils/sendMailByNodeMailer";
 
 const prisma = new PrismaClient();
 
