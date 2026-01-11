@@ -14,7 +14,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: "*",
+  origin: "https://assistholdingsltd.com",
   credentials: true,
 }));
 app.use(cookieParser());
